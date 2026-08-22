@@ -12,7 +12,6 @@
     --ink:#1F2B3A;
     --ink-soft:#5B6472;
     --seal:#000000;
-    --seal-dark:#000000;
     --gold:#A9824C;
     --radius:4px;
     --serif:'Times New Roman', Times, serif;
@@ -21,8 +20,7 @@
   html,body{margin:0;padding:0;}
   body{
     background:var(--paper);
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(31,43,58,0.05) 1px, transparent 0);
+    background-image:radial-gradient(circle at 1px 1px, rgba(31,43,58,0.05) 1px, transparent 0);
     background-size:22px 22px;
     color:var(--ink);
     font-family:var(--serif);
@@ -34,262 +32,92 @@
   }
   .card{
     width:100%;
-    max-width:560px;
+    max-width:520px;
     background:var(--paper-raised);
     border:1px solid var(--line);
     border-radius:var(--radius);
     box-shadow:0 1px 2px rgba(31,43,58,0.04), 0 12px 32px -16px rgba(31,43,58,0.18);
-    padding:40px 40px 32px;
-    position:relative;
+    padding:36px 38px 30px;
   }
-  @media (max-width:480px){
-    .card{padding:28px 20px 24px;}
-  }
+  @media (max-width:480px){ .card{padding:26px 20px 22px;} }
 
-  /* header: page marker + seal */
-  .logo-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:22px;
-  }
+  .logo-row{ display:flex; align-items:center; gap:10px; margin-bottom:22px; }
   .logo-mark{
-    width:34px;height:34px;
-    flex:none;
-    border:1.5px solid var(--ink);
-    border-radius:50%;
+    width:34px;height:34px; flex:none;
+    border:1.5px solid var(--ink); border-radius:50%;
     display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);
-    font-weight:700;
-    font-size:13px;
-    letter-spacing:0.02em;
+    font-weight:700; font-size:13px;
   }
-  .logo-word{
-    font-family:var(--serif);
-    font-weight:700;
-    font-size:17px;
-    letter-spacing:0.01em;
-    color:var(--ink);
-  }
-  .logo-word span{color:var(--gold);}
+  .logo-word{ font-weight:700; font-size:18px; }
+  .logo-word span{ color:var(--gold); }
 
-  .header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:20px;
-  }
-  .page-marker{
-    font-family:var(--serif);
-    font-size:12px;
-    letter-spacing:0.06em;
-    color:var(--ink-soft);
-    text-transform:uppercase;
-  }
+  .header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .page-marker{ font-size:12px; letter-spacing:0.06em; color:var(--ink-soft); text-transform:uppercase; }
   .seal{
-    width:34px;height:34px;
-    border-radius:50%;
-    flex:none;
-    position:relative;
-    background:
-      conic-gradient(var(--seal) calc(var(--pct,0) * 1%), transparent 0);
+    width:32px;height:32px; border-radius:50%; flex:none;
+    background:conic-gradient(var(--seal) calc(var(--pct,0) * 1%), transparent 0);
     display:flex;align-items:center;justify-content:center;
     transition:background 0.5s ease;
   }
-  .seal::after{
-    content:"";
-    width:24px;height:24px;
-    border-radius:50%;
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-  }
-  .seal svg{position:absolute;width:13px;height:13px;fill:var(--seal);}
+  .seal::after{ content:""; width:22px;height:22px; border-radius:50%; background:var(--paper-raised); border:1px solid var(--line); }
 
-  .rule{
-    height:1px;
-    background:var(--line);
-    margin-bottom:28px;
-  }
+  .rule{ height:1px; background:var(--line); margin-bottom:26px; }
 
-  h1.brand{
-    font-family:var(--serif);
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:0.02em;
-    color:var(--gold);
-    margin:0 0 6px;
-    text-transform:uppercase;
-  }
-  h2.step-title{
-    font-family:var(--serif);
-    font-size:26px;
-    font-weight:600;
-    line-height:1.25;
-    margin:0 0 24px;
-    color:var(--ink);
-  }
+  h1.brand{ font-size:14px; font-weight:700; letter-spacing:0.02em; color:var(--gold); margin:0 0 6px; text-transform:uppercase; }
+  h2.step-title{ font-size:24px; font-weight:700; line-height:1.28; margin:0 0 8px; }
+  p.step-sub{ font-size:14px; color:var(--ink-soft); margin:0 0 20px; }
 
-  .step{display:none;}
-  .step.active{display:block; animation:reveal 0.35s ease;}
-  @keyframes reveal{
-    from{opacity:0; transform:translateY(6px);}
-    to{opacity:1; transform:translateY(0);}
-  }
+  .step{ display:none; }
+  .step.active{ display:block; animation:reveal 0.35s ease; }
+  @keyframes reveal{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
 
-  /* radio cards (step 1) */
-  .option-list{display:flex; flex-direction:column; gap:10px; margin-bottom:28px;}
-  .option{
-    position:relative;
-  }
-  .option input{position:absolute; opacity:0; inset:0; width:100%; height:100%; cursor:pointer; margin:0;}
+  .option-list{ display:flex; flex-direction:column; gap:10px; margin-top:22px; margin-bottom:8px; }
+  .option{ position:relative; }
+  .option input{ position:absolute; opacity:0; inset:0; width:100%; height:100%; cursor:pointer; margin:0; }
   .option label{
     display:flex; align-items:center; gap:12px;
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:14px 16px;
-    font-size:16px;
-    color:var(--ink);
-    cursor:pointer;
-    transition:border-color 0.15s ease, background 0.15s ease;
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 16px; font-size:16px; cursor:pointer;
     background:var(--paper-raised);
+    transition:border-color 0.15s ease, background 0.15s ease;
   }
   .option label::before{
-    content:"";
-    width:16px;height:16px;
-    flex:none;
-    border-radius:50%;
+    content:""; width:16px;height:16px; flex:none; border-radius:50%;
     border:1.5px solid var(--ink-soft);
     transition:border-color 0.15s ease, box-shadow 0.15s ease;
   }
-  .option input:checked + label{
-    border-color:var(--seal);
-    background:#FBF3F0;
-  }
-  .option input:checked + label::before{
-    border-color:var(--seal);
-    box-shadow:inset 0 0 0 3px var(--seal);
-  }
-  .option input:focus-visible + label{
-    outline:2px solid var(--seal);
-    outline-offset:2px;
-  }
+  .option input:checked + label{ border-color:var(--seal); background:#F2F2F2; }
+  .option input:checked + label::before{ border-color:var(--seal); box-shadow:inset 0 0 0 3px var(--seal); }
+  .option input:focus-visible + label{ outline:2px solid var(--seal); outline-offset:2px; }
 
-  /* text fields (steps 2-4) */
-  .field{margin-bottom:18px;}
+  .field{ margin-bottom:16px; }
   .field label{
-    display:block;
-    font-family:var(--serif);
-    font-size:11px;
-    letter-spacing:0.05em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    margin-bottom:7px;
+    display:block; font-size:12px; letter-spacing:0.03em; text-transform:uppercase;
+    color:var(--ink-soft); margin-bottom:6px;
   }
-  .field input[type="text"],
-  .field input[type="email"],
-  .field input[type="tel"],
-  .field input[type="date"],
-  .field select,
-  .field textarea{
-    width:100%;
-    font-family:var(--serif);
-    font-size:16px;
-    color:var(--ink);
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:11px 13px;
-    transition:border-color 0.15s ease;
+  .field input, .field select{
+    width:100%; font-family:var(--serif); font-size:16px; color:var(--ink);
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:11px 13px; transition:border-color 0.15s ease;
   }
-  .field textarea{resize:vertical; min-height:84px;}
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus{
-    outline:none;
-    border-color:var(--seal);
-  }
-  .placeholder-tag{
-    display:inline-block;
-    font-family:var(--serif);
-    font-size:10px;
-    color:var(--gold);
-    border:1px solid var(--gold);
-    border-radius:3px;
-    padding:1px 6px;
-    margin-left:8px;
-    text-transform:none;
-    letter-spacing:0;
-    vertical-align:middle;
-  }
+  .field input:focus, .field select:focus{ outline:none; border-color:var(--seal); }
 
-  .checkbox-row{
-    display:flex; align-items:flex-start; gap:10px;
-    font-size:14px; color:var(--ink-soft);
-    margin-bottom:24px;
-  }
-  .checkbox-row input{margin-top:4px;}
-
-  /* review (step 5) */
-  .review-list{list-style:none; padding:0; margin:0 0 24px; border-top:1px solid var(--line);}
-  .review-list li{
-    display:flex; justify-content:space-between; gap:16px;
-    padding:10px 0; border-bottom:1px solid var(--line);
-    font-size:14px;
-  }
-  .review-list .k{color:var(--ink-soft); font-family:var(--serif); font-size:11px; text-transform:uppercase; letter-spacing:0.04em; padding-top:2px;}
-  .review-list .v{text-align:right; color:var(--ink); max-width:60%;}
-
-  /* buttons */
-  .nav-row{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:4px;}
+  .nav-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:18px; }
   button{
-    font-family:var(--serif);
-    font-size:13px;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    border-radius:var(--radius);
-    padding:13px 22px;
-    cursor:pointer;
-    border:1px solid transparent;
-    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+    font-family:var(--serif); font-size:14px; letter-spacing:0.02em;
+    border-radius:var(--radius); padding:13px 24px; cursor:pointer;
+    border:1px solid transparent; transition:opacity 0.15s ease, background 0.15s ease;
   }
-  .btn-primary{
-    background:var(--seal);
-    color:#fff;
-    border-color:var(--seal);
-    margin-left:auto;
-  }
-  .btn-primary:hover{background:var(--seal-dark); border-color:var(--seal-dark);}
-  .btn-primary:disabled{opacity:0.45; cursor:not-allowed;}
-  .btn-ghost{
-    background:transparent;
-    color:var(--ink-soft);
-    border-color:var(--line);
-  }
-  .btn-ghost:hover{color:var(--ink); border-color:var(--ink-soft);}
+  .btn-primary{ background:var(--seal); color:#fff; border-color:var(--seal); margin-left:auto; }
+  .btn-primary:hover{ opacity:0.85; }
+  .btn-primary:disabled{ opacity:0.4; cursor:not-allowed; }
+  .btn-ghost{ background:transparent; color:var(--ink-soft); border-color:var(--line); }
+  .btn-ghost:hover{ color:var(--ink); border-color:var(--ink-soft); }
 
-  .error-msg{
-    font-family:var(--serif);
-    font-size:12px;
-    color:var(--seal);
-    margin:-14px 0 18px;
-    display:none;
-  }
-  .error-msg.show{display:block;}
-
-  /* success state */
-  .success{
-    text-align:center;
-    padding:12px 0 4px;
-  }
-  .success .seal-final{
-    width:56px; height:56px; border-radius:50%;
-    background:var(--seal);
-    margin:0 auto 20px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .success .seal-final svg{width:26px; height:26px; fill:#fff;}
-  .success h2{margin-bottom:10px;}
-  .success p{color:var(--ink-soft); font-size:15px; line-height:1.6;}
+  .success{ text-align:center; padding:10px 0 4px; }
+  .success .seal-final{ width:54px;height:54px; border-radius:50%; background:var(--seal); margin:0 auto 18px; display:flex;align-items:center;justify-content:center; }
+  .success .seal-final svg{ width:24px;height:24px; fill:#fff; }
+  .success p{ color:var(--ink-soft); font-size:15px; line-height:1.6; }
 </style>
 </head>
 <body>
@@ -303,133 +131,96 @@
 
   <div class="header">
     <span class="page-marker" id="pageMarker">Strana 1 z 5</span>
-    <div class="seal" id="sealMeter" style="--pct:20">
-      <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3 5.7 20.7 8 13.6 2 9.2h7.6z"/></svg>
-    </div>
+    <div class="seal" id="sealMeter" style="--pct:20"></div>
   </div>
   <div class="rule"></div>
 
-  <!-- STEP 1 — reproduced from the live Tally form -->
+  <!-- STEP 1 -->
   <div class="step active" data-step="1">
     <h1 class="brand">Nezávazná poptávka</h1>
     <h2 class="step-title">Jaký typ práce potřebujete?</h2>
     <div class="option-list" role="radiogroup" aria-label="Typ práce">
-      <div class="option">
-        <input type="radio" name="typPrace" id="opt1" value="Disertační práce" required>
-        <label for="opt1">Disertační práce</label>
-      </div>
-      <div class="option">
-        <input type="radio" name="typPrace" id="opt2" value="Bakalářská práce">
-        <label for="opt2">Bakalářská práce</label>
-      </div>
-      <div class="option">
-        <input type="radio" name="typPrace" id="opt3" value="Diplomová práce">
-        <label for="opt3">Diplomová práce</label>
-      </div>
-      <div class="option">
-        <input type="radio" name="typPrace" id="opt4" value="Seminární práce">
-        <label for="opt4">Seminární práce</label>
-      </div>
-      <div class="option">
-        <input type="radio" name="typPrace" id="opt5" value="Jiná práce">
-        <label for="opt5">Jiná práce</label>
-      </div>
-    </div>
-    <p class="error-msg" data-error-for="1">Vyberte prosím jednu možnost.</p>
-    <div class="nav-row">
-      <span></span>
-      <button type="button" class="btn-primary" data-next>Další</button>
+      <div class="option"><input type="radio" name="typPrace" id="opt1" value="Disertační práce"><label for="opt1">Disertační práce</label></div>
+      <div class="option"><input type="radio" name="typPrace" id="opt2" value="Bakalářská práce"><label for="opt2">Bakalářská práce</label></div>
+      <div class="option"><input type="radio" name="typPrace" id="opt3" value="Diplomová práce"><label for="opt3">Diplomová práce</label></div>
+      <div class="option"><input type="radio" name="typPrace" id="opt4" value="Seminární práce"><label for="opt4">Seminární práce</label></div>
+      <div class="option"><input type="radio" name="typPrace" id="opt5" value="Jiná práce"><label for="opt5">Jiná práce</label></div>
     </div>
   </div>
 
-  <!-- STEP 2 — placeholder, edit freely -->
+  <!-- STEP 2 -->
   <div class="step" data-step="2">
-    <h2 class="step-title">Obor a téma práce <span class="placeholder-tag">uprav</span></h2>
-    <div class="field">
-      <label for="obor">Fakulta / obor</label>
-      <input type="text" id="obor" name="obor" required placeholder="např. Ekonomická fakulta">
+    <h2 class="step-title">S čím potřebujete pomoci?</h2>
+    <div class="option-list" role="radiogroup" aria-label="Typ pomoci">
+      <div class="option"><input type="radio" name="pomoc" id="p1" value="Vypracování celé práce"><label for="p1">Vypracování celé práce</label></div>
+      <div class="option"><input type="radio" name="pomoc" id="p2" value="Úprava již napsaného textu"><label for="p2">Úprava již napsaného textu</label></div>
+      <div class="option"><input type="radio" name="pomoc" id="p3" value="Korektura textu"><label for="p3">Korektura textu</label></div>
+      <div class="option"><input type="radio" name="pomoc" id="p4" value="Formátování podle školy"><label for="p4">Formátování podle školy</label></div>
+      <div class="option"><input type="radio" name="pomoc" id="p5" value="Konzultace"><label for="p5">Konzultace</label></div>
     </div>
-    <div class="field">
-      <label for="tema">Téma práce (i orientační)</label>
-      <textarea id="tema" name="tema" placeholder="Popište krátce zadání nebo téma..."></textarea>
-    </div>
-    <p class="error-msg" data-error-for="2">Vyplňte prosím fakultu / obor.</p>
-    <div class="nav-row">
-      <button type="button" class="btn-ghost" data-back>Zpět</button>
-      <button type="button" class="btn-primary" data-next>Další</button>
-    </div>
+    <div class="nav-row"><button type="button" class="btn-ghost" data-back>Zpět</button><span></span></div>
   </div>
 
-  <!-- STEP 3 — placeholder, edit freely -->
+  <!-- STEP 3 -->
   <div class="step" data-step="3">
-    <h2 class="step-title">Termín a stav práce <span class="placeholder-tag">uprav</span></h2>
+    <h2 class="step-title">Termín odevzdání práce?</h2>
+    <div class="option-list" role="radiogroup" aria-label="Termín">
+      <div class="option"><input type="radio" name="termin" id="t1" value="Velmi urgentní"><label for="t1">🚨 Velmi urgentní</label></div>
+      <div class="option"><input type="radio" name="termin" id="t2" value="Do 14 dnů"><label for="t2">Do 14 dnů</label></div>
+      <div class="option"><input type="radio" name="termin" id="t3" value="Do 30 dnů"><label for="t3">Do 30 dnů</label></div>
+      <div class="option"><input type="radio" name="termin" id="t4" value="Do 60 dnů"><label for="t4">Do 60 dnů</label></div>
+    </div>
+    <div class="nav-row"><button type="button" class="btn-ghost" data-back>Zpět</button><span></span></div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" data-step="4">
+    <h2 class="step-title">Požadovaný rozsah práce</h2>
+    <div class="option-list" role="radiogroup" aria-label="Rozsah práce">
+      <div class="option"><input type="radio" name="rozsah" id="r1" value="do 20 stran"><label for="r1">do 20 stran</label></div>
+      <div class="option"><input type="radio" name="rozsah" id="r2" value="40 stran"><label for="r2">40 stran</label></div>
+      <div class="option"><input type="radio" name="rozsah" id="r3" value="40–60 stran"><label for="r3">40–60 stran</label></div>
+      <div class="option"><input type="radio" name="rozsah" id="r4" value="80+ stran"><label for="r4">80+ stran</label></div>
+      <div class="option"><input type="radio" name="rozsah" id="r5" value="ještě nevím"><label for="r5">ještě nevím</label></div>
+    </div>
+    <div class="nav-row"><button type="button" class="btn-ghost" data-back>Zpět</button><span></span></div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step" data-step="5">
+    <h2 class="step-title">Zadejte kontaktní údaje pro komunikaci</h2>
+
     <div class="field">
-      <label for="termin">Termín odevzdání</label>
-      <input type="date" id="termin" name="termin">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="vas@email.cz">
     </div>
     <div class="field">
-      <label for="stav">Aktuální stav práce</label>
-      <select id="stav" name="stav">
-        <option value="Ještě nezačato">Ještě nezačato</option>
-        <option value="Rozpracováno">Rozpracováno</option>
-        <option value="Potřebuji korekturu">Potřebuji jen korekturu</option>
+      <label for="telefon">Telefon</label>
+      <input type="tel" id="telefon" name="telefon" placeholder="+420 000 000 000">
+    </div>
+    <div class="field">
+      <label for="jmeno">Jméno a příjmení</label>
+      <input type="text" id="jmeno" name="jmeno" placeholder="Jan Novák">
+    </div>
+    <div class="field">
+      <label for="kanal">Kam vám máme poslat nabídku?</label>
+      <select id="kanal" name="kanal">
+        <option value="WhatsApp">WhatsApp</option>
+        <option value="Email">Email</option>
       </select>
     </div>
     <div class="nav-row">
       <button type="button" class="btn-ghost" data-back>Zpět</button>
-      <button type="button" class="btn-primary" data-next>Další</button>
+      <button type="submit" class="btn-primary" id="submitBtn">Odeslat</button>
     </div>
   </div>
 
-  <!-- STEP 4 — placeholder, edit freely -->
-  <div class="step" data-step="4">
-    <h2 class="step-title">Kontaktní údaje <span class="placeholder-tag">uprav</span></h2>
-    <div class="field">
-      <label for="jmeno">Jméno a příjmení</label>
-      <input type="text" id="jmeno" name="jmeno" required>
-    </div>
-    <div class="field">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="field">
-      <label for="telefon">Telefon</label>
-      <input type="tel" id="telefon" name="telefon">
-    </div>
-    <p class="error-msg" data-error-for="4">Vyplňte prosím jméno a platný e-mail.</p>
-    <div class="nav-row">
-      <button type="button" class="btn-ghost" data-back>Zpět</button>
-      <button type="button" class="btn-primary" data-next>Další</button>
-    </div>
-  </div>
-
-  <!-- STEP 5 — review + submit -->
-  <div class="step" data-step="5">
-    <h2 class="step-title">Shrnutí poptávky</h2>
-    <ul class="review-list" id="reviewList"></ul>
-    <div class="field">
-      <label for="poznamka">Poznámka (nepovinné)</label>
-      <textarea id="poznamka" name="poznamka" placeholder="Cokoli dalšího, co bychom měli vědět..."></textarea>
-    </div>
-    <label class="checkbox-row">
-      <input type="checkbox" id="souhlas" name="souhlas" required>
-      <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.</span>
-    </label>
-    <p class="error-msg" data-error-for="5">Potvrďte prosím souhlas se zpracováním údajů.</p>
-    <div class="nav-row">
-      <button type="button" class="btn-ghost" data-back>Zpět</button>
-      <button type="submit" class="btn-primary" id="submitBtn">Odeslat poptávku</button>
-    </div>
-  </div>
-
-  <!-- SUCCESS STATE -->
+  <!-- SUCCESS -->
   <div class="step" data-step="6">
     <div class="success">
-      <div class="seal-final">
-        <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 20.6 7.4l-1.4-1.4z"/></svg>
-      </div>
+      <div class="seal-final"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 20.6 7.4l-1.4-1.4z"/></svg></div>
       <h2 class="step-title">Poptávka odeslána</h2>
-      <p>Děkujeme! Ozveme se vám na uvedený e-mail nebo telefon do 24 hodin.</p>
+      <p>Děkujeme! Ozveme se vám, jakmile to půjde.</p>
     </div>
   </div>
 
@@ -438,11 +229,11 @@
 <script>
 (function(){
   // ⚠️ Vložte sem URL vašeho nasazeného Google Apps Script webu (končí na /exec)
-  const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyWI6whMt_xQT3i8wOtadf7HV4E2qKf1TcQq_-uZe6moCZAa_FvnOwQp4nEH9Q567e1/exec";
+  const ENDPOINT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
 
   const form = document.getElementById('dilnaForm');
   const steps = Array.from(form.querySelectorAll('.step'));
-  const totalSteps = 5; // step 6 is the success screen, excluded from the counter
+  const totalSteps = 5;
   const pageMarker = document.getElementById('pageMarker');
   const seal = document.getElementById('sealMeter');
   let current = 1;
@@ -456,88 +247,20 @@
     current = n;
   }
 
-  function showError(step){
-    const el = form.querySelector(`.error-msg[data-error-for="${step}"]`);
-    if(el) el.classList.add('show');
-  }
-  function clearError(step){
-    const el = form.querySelector(`.error-msg[data-error-for="${step}"]`);
-    if(el) el.classList.remove('show');
-  }
-
-  function validateStep(n){
-    const stepEl = form.querySelector(`.step[data-step="${n}"]`);
-    const required = Array.from(stepEl.querySelectorAll('[required]'));
-    let ok = true;
-
-    if(n === 1){
-      ok = !!form.querySelector('input[name="typPrace"]:checked');
-    } else {
-      for(const field of required){
-        if(field.type === 'checkbox'){
-          if(!field.checked) ok = false;
-        } else if(!field.value.trim()){
-          ok = false;
-        } else if(field.type === 'email'){
-          const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if(!re.test(field.value.trim())) ok = false;
-        }
-      }
-    }
-
-    if(ok) clearError(n); else showError(n);
-    return ok;
-  }
-
-  form.querySelectorAll('[data-next]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      if(validateStep(current)) showStep(current + 1);
-    });
-  });
   form.querySelectorAll('[data-back]').forEach(btn=>{
     btn.addEventListener('click', ()=> showStep(current - 1));
   });
 
-  function buildReview(){
-    const data = new FormData(form);
-    const rows = [
-      ['Typ práce', data.get('typPrace') || '—'],
-      ['Fakulta / obor', data.get('obor') || '—'],
-      ['Termín', data.get('termin') || '—'],
-      ['Jméno', data.get('jmeno') || '—'],
-      ['E-mail', data.get('email') || '—'],
-      ['Telefon', data.get('telefon') || '—'],
-    ];
-    const list = document.getElementById('reviewList');
-    list.innerHTML = rows.map(([k,v])=>`<li><span class="k">${k}</span><span class="v">${v}</span></li>`).join('');
-  }
-
-  // build the review right before entering step 5
-  form.querySelectorAll('[data-next]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      if(current + 1 === 5 || current === 4) buildReview();
-    });
-  });
-
-  // auto-advance: picking a radio answer (step 1) flips the page automatically,
-  // no need to press "Další"
-  function advanceFrom(n){
-    if(!validateStep(n)) return;
-    if(n + 1 === 5 || n === 4) buildReview();
-    showStep(n + 1);
-  }
+  // picking a radio answer auto-advances — nothing is required, so no validation gate
   form.querySelectorAll('input[type="radio"]').forEach(input=>{
     input.addEventListener('change', ()=>{
-      const stepEl = input.closest('.step');
-      const stepNum = Number(stepEl.dataset.step);
-      setTimeout(()=> advanceFrom(stepNum), 250);
+      const stepNum = Number(input.closest('.step').dataset.step);
+      setTimeout(()=> showStep(stepNum + 1), 250);
     });
   });
 
   form.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    if(!validateStep(5)) return;
-
     const submitBtn = document.getElementById('submitBtn');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Odesílám…';
@@ -548,14 +271,14 @@
     try{
       await fetch(ENDPOINT_URL, {
         method: 'POST',
-        headers: {'Content-Type': 'text/plain;charset=utf-8'}, // avoids CORS preflight against Apps Script
+        headers: {'Content-Type': 'text/plain;charset=utf-8'},
         body: JSON.stringify(payload)
       });
       showStep(6);
     }catch(err){
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Odeslat poptávku';
-      alert('Něco se nepovedlo. Zkuste to prosím znovu, nebo nám napište přímo na e-mail.');
+      submitBtn.textContent = 'Odeslat';
+      alert('Něco se nepovedlo. Zkuste to prosím znovu.');
       console.error(err);
     }
   });
