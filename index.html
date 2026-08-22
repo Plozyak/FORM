@@ -103,10 +103,11 @@
   .field input:focus, .field select:focus{ outline:none; border-color:var(--seal); }
 
   .nav-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:18px; }
-  button{
+  button, a.btn-link{
     font-family:var(--serif); font-size:14px; letter-spacing:0.02em;
     border-radius:var(--radius); padding:13px 24px; cursor:pointer;
     border:1px solid transparent; transition:opacity 0.15s ease, background 0.15s ease;
+    display:inline-block; text-decoration:none;
   }
   .btn-primary{ background:var(--seal); color:#fff; border-color:var(--seal); margin-left:auto; }
   .btn-primary:hover{ opacity:0.85; }
@@ -118,6 +119,8 @@
   .success .seal-final{ width:54px;height:54px; border-radius:50%; background:var(--seal); margin:0 auto 18px; display:flex;align-items:center;justify-content:center; }
   .success .seal-final svg{ width:24px;height:24px; fill:#fff; }
   .success p{ color:var(--ink-soft); font-size:15px; line-height:1.6; }
+  .success .redirect-note{ font-size:12px; color:var(--ink-soft); margin-top:14px; }
+  .success .btn-primary{ margin:20px auto 0; }
 </style>
 </head>
 <body>
@@ -219,8 +222,10 @@
   <div class="step" data-step="6">
     <div class="success">
       <div class="seal-final"><svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 20.6 7.4l-1.4-1.4z"/></svg></div>
-      <h2 class="step-title">Poptávka odeslána</h2>
-      <p>Děkujeme! Ozveme se vám, jakmile to půjde.</p>
+      <h2 class="step-title">Děkujeme!</h2>
+      <p>Vaše poptávka byla úspěšně odeslána. Ozveme se vám, jakmile to půjde.</p>
+      <a class="btn-primary btn-link" id="siteLink" href="https://www.diplomovadilna.cz/">Přejít na web Diplomová Dílna</a>
+      <p class="redirect-note" id="redirectNote">Za chvíli vás automaticky přesměrujeme…</p>
     </div>
   </div>
 
@@ -230,6 +235,10 @@
 (function(){
   // ⚠️ Vložte sem URL vašeho nasazeného Google Apps Script webu (končí na /exec)
   const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbzdJ7idSSM2c9PqNtI-GFghdKJr4As6UCurQiEhKPKGpxwoxKVZTx2O_ikTbTmByWarzg/exec";
+
+  // ⚠️ Sem vložte skutečnou adresu webu Diplomová Dílna, pokud se liší
+  const SITE_URL = "https://www.diplomovadilna.cz/";
+  const REDIRECT_DELAY_MS = 4000;
 
   const form = document.getElementById('dilnaForm');
   const steps = Array.from(form.querySelectorAll('.step'));
@@ -259,6 +268,8 @@
     });
   });
 
+  document.getElementById('siteLink').href = SITE_URL;
+
   form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const submitBtn = document.getElementById('submitBtn');
@@ -275,6 +286,7 @@
         body: JSON.stringify(payload)
       });
       showStep(6);
+      setTimeout(()=>{ window.location.href = SITE_URL; }, REDIRECT_DELAY_MS);
     }catch(err){
       submitBtn.disabled = false;
       submitBtn.textContent = 'Odeslat';
