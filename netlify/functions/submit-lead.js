@@ -7,6 +7,25 @@ exports.handler = async function(event) {
 
   try {
     const payload = JSON.parse(event.body || '{}');
+    const email = String(payload.email || '').trim();
+
+    if (!email) {
+      return {
+        statusCode: 400,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Vyplňte prosím e-mailovou adresu.' })
+      };
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return {
+        statusCode: 400,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Zadejte prosím platnou e-mailovou adresu.' })
+      };
+    }
+
+    payload.email = email;
 
     const response = await fetch(CRM_ENDPOINT, {
       method: 'POST',
