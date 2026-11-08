@@ -1,5 +1,5 @@
 const { randomUUID } = require('node:crypto');
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 
 // A 201 response means that the request was durably queued, not that email has arrived.
 exports.handler = async function (event) {
@@ -25,6 +25,7 @@ exports.handler = async function (event) {
 
     const id = randomUUID();
     const createdAt = new Date().toISOString();
+    connectLambda(event);
     const store = getStore({ name: 'lead-inbox', consistency: 'strong' });
     await store.setJSON('lead-' + id, {
       id, createdAt, status: 'pending', attempts: 0, nextAttemptAt: createdAt, payload
