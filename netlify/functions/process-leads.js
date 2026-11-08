@@ -1,10 +1,11 @@
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 
 const DEFAULT_EMAIL_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzdJ7idSSM2c9PqNtI-GFghdKJr4As6UCurQiEhKPKGpxwoxKVZTx2O_ikTbTmByWarzg/exec';
 const RETRY_MINUTES = [1, 3, 10, 30, 60, 180, 360];
 const MAX_PER_RUN = 2;
 
-exports.handler = async () => {
+exports.handler = async (event) => {
+  connectLambda(event);
   const store = getStore({ name: 'lead-inbox', consistency: 'strong' });
   const now = Date.now();
   let processed = 0;
